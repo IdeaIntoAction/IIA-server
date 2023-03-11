@@ -36,9 +36,9 @@ for ability to start from monolith and later smoothly transition to microservice
 
 This layer contains all app specific logic. Each service consist of `commands` and `eventHandlers`
 implemented using domain function like style where each function receives `infra` as a first
-argument and actual payload as a second. Infrastructe gets injected into each function using
+argument and actual payload as a second. Infrastructure gets injected into each function using
 partial application.
-Services should know only about Infrastructure (interfaces) and `lib` (utility functions, commun
+Services should know only about Infrastructure (interfaces) and `lib` (utility functions, common
 schemas etc...).
 `src/services/error.js` contains general `ServiceError` that should be used inside services.
 Those errors are caught and processed as expected errors. All other errors are treated as

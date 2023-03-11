@@ -63,5 +63,5 @@ export const teardown = async (infra, server) => {
   const { logger } = infra;
   logger.info('Stopping server');
   await server.close();
-  logger.info('Server stoped');
+  logger.info('Server stopped');
 };

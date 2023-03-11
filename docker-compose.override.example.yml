@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  dev:
+    ports:
+      - 8000:8000
+  postgres:
+    environment:
+      - POSTGRES_USER=dromix
+      - POSTGRES_PASSWORD=super_secret
+    ports:
+      - "5432:5432"
+
+  redis:
+    ports:
+      - "6379:6379"
+
+volumes:
+  node_modules: {}

@@ -5,6 +5,8 @@ import { nodeEnv } from './util.js';
 export default {
   logger: { env: nodeEnv },
   db: { errorFormat: 'minimal' },
-  redis: {},
+  redis: {
+    url: process.env.REDIS_URL,
+  },
   bus: { type: 'local' },
 };

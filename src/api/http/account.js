@@ -8,4 +8,12 @@ const transfer = {
   command: { service: 'account', method: 'transfer' },
 };
 
-export default [transfer];
+/** @type HttpRoute */
+const balance = {
+  method: 'GET',
+  url: '/balance',
+  inputSource: 'query',
+  command: { service: 'account', method: 'getBalance' },
+};
+
+export default [transfer, balance];

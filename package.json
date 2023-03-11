@@ -6,9 +6,10 @@
   "main": "src/main.js",
   "scripts": {
     "lint": "eslint . && tsc --project .",
-    "start": "node src/main.js",
+    "start": "node -r dotenv/config src/main.js",
     "build": "prisma generate && node ./prisma/sanitise.js",
-    "test": "NODE_ENV=test tap --no-coverage"
+    "test": "NODE_ENV=test tap --no-coverage",
+    "prestart": "dotenv-checker --schema .env.schema --env .env"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "@fastify/swagger-ui": "^1.3.0",
     "@fastify/websocket": "^7.1.2",
     "@prisma/client": "^4.10.1",
+    "dotenv": "^16.0.3",
     "fastify": "^4.10.2",
     "fastify-plugin": "^4.4.0",
     "pino": "^8.7.0",
@@ -41,6 +43,7 @@
     "@types/ws": "^8.5.4",
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
+    "dotenv-checker": "^1.1.5",
     "eslint": "^8.22.0",
     "eslint-config-metarhia": "^8.1.0",
     "eslint-config-prettier": "^8.5.0",
@@ -51,7 +54,7 @@
     "metatests": "^0.8.2",
     "pino-pretty": "^9.1.1",
     "prettier": "^2.7.1",
-    "prisma": "^4.10.1",
+    "prisma": "^4.11.0",
     "tap": "^16.3.4",
     "typescript": "^4.7.4"
   }
