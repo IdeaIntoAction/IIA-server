@@ -19,15 +19,15 @@ describe('account/transfer', () => {
   };
   const sender = { id: 'user1', email: '1@test.com', ...userCommon };
   const receiver = { id: 'user2', email: '2@test.com', ...userCommon };
-  const sendSession = { userId: sender.id, token: crypto.random() };
-  const recvSession = { userId: receiver.id, token: crypto.random() };
+  const sendSession = { userId: sender.id, token: crypto.randomUUID() };
+  const recvSession = { userId: receiver.id, token: crypto.randomUUID() };
   const sendAccount = { id: 'account1', userId: sender.id };
   const recvAccount = { id: 'account2', userId: receiver.id };
   const initialBalance = 1000;
 
   before(async () => {
-    const servicesId = crypto.random();
-    const gatewayId = crypto.random();
+    const servicesId = crypto.randomUUID();
+    const gatewayId = crypto.randomUUID();
 
     services = await start({
       ...defaultConfig,
@@ -126,13 +126,9 @@ describe('account/transfer', () => {
       headers: { Authorization: `Bearer ${recvSession.token}` },
     });
     const sendMessages = [];
-    sendSocket.on('message', (msg) =>
-      sendMessages.push(JSON.parse(msg.toString())),
-    );
+    sendSocket.on('message', (msg) => sendMessages.push(JSON.parse(msg.toString())));
     const recvMessages = [];
-    recvSocket.on('message', (msg) =>
-      recvMessages.push(JSON.parse(msg.toString())),
-    );
+    recvSocket.on('message', (msg) => recvMessages.push(JSON.parse(msg.toString())));
 
     await setTimeout(100);
 

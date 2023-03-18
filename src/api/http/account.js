@@ -1,7 +1,7 @@
 /** @typedef {import('../types').HTTPRoute} HttpRoute */
 
 /** @type HttpRoute */
-const transfer = {
+export const transfer = {
   method: 'POST',
   url: '/transfer',
   inputSource: 'body',
@@ -9,11 +9,9 @@ const transfer = {
 };
 
 /** @type HttpRoute */
-const balance = {
+export const balance = {
   method: 'GET',
   url: '/balance',
   inputSource: 'query',
   command: { service: 'account', method: 'getBalance' },
 };
-
-export default [transfer, balance];

@@ -23,7 +23,7 @@ const http = async (server, options) => {
   const { api, prefix, bus } = options;
 
   for (const [service, routes] of Object.entries(api)) {
-    for (const route of routes) {
+    for (const route of Object.values(routes)) {
       const fullUrl = `${prefix}/${service}${route.url}`;
 
       const routeOptions =
@@ -73,9 +73,7 @@ const getRouteOptions = (route, url, bus, server) => {
     url,
     schema,
     handler: async (req, res) => {
-      const { operationId, ...data } = /** @type any */ (
-        input ? req[inputSource] : {}
-      );
+      const { operationId, ...data } = /** @type any */ (input ? req[inputSource] : {});
       const { session } = req;
       const payload = { meta: { ...session, operationId }, data };
 
