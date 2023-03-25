@@ -12,6 +12,7 @@ COPY src ./src
 COPY ./.env /app/
 
 RUN yarn build
+RUN node /app/prisma/sanitise.js
 
 EXPOSE 8000
 
