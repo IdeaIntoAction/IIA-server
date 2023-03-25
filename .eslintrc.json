@@ -1,6 +1,5 @@
 {
   "extends": [
-    "metarhia",
     "plugin:prettier/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
@@ -31,7 +30,7 @@
     "import/resolver": {
       "typescript": {
         "alwaysTryTypes": true,
-        "project": "path/to/folder"
+        "project": "."
       }
     }
   }
