@@ -6,11 +6,12 @@
   "main": "src/main.js",
   "scripts": {
     "lint": "eslint . && tsc --project .",
-    "format": "prettier --write .",
+    "format": "prettier --list-different **/*.js --write .",
     "start": "node -r dotenv/config src/main.js",
     "build": "prisma generate && node ./prisma/sanitise.js",
     "test": "NODE_ENV=test tap --no-coverage",
-    "prestart": "dotenv-checker --schema .env.schema --env .env"
+    "prestart": "dotenv-checker --schema .env.schema --env .env",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "dotenv": "^16.0.3",
     "fastify": "^4.10.2",
     "fastify-plugin": "^4.4.0",
+    "husky": "^8.0.3",
     "pino": "^8.7.0",
     "prisma-json-schema-generator": "^3.1.2",
     "redis": "^4.6.4"
