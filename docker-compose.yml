@@ -3,7 +3,7 @@ services:
   server:
     build:
       context: .
-      target: prod
+      target: dev
     container_name: IIA_server
     environment:
       DATABASE_HOST: postgres
