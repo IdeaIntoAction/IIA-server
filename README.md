@@ -3,15 +3,17 @@
 ## Components
 
 Template consist of:
+
 1. Infrastructural services (`src/infra/`)
 1. Application and domain services (`src/services/`)
 1. API layer (`src/api`)
 1. Server with its plugins as a separate unit
 
 Built using:
- - `fastify` and its ecosystem - https://www.fastify.io/
- - `prisma` - https://www.prisma.io/
- - `redis` - https://redis.io/
+
+- `fastify` and its ecosystem - https://www.fastify.io/
+- `prisma` - https://www.prisma.io/
+- `redis` - https://redis.io/
 
 Above dependencies can be replaced, but it will probably require some effort since they contain
 a lot of out-of-the-box functionality, that aren't always present in their alternatives.
