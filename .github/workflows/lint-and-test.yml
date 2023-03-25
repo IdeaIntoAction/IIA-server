@@ -31,20 +31,20 @@ jobs:
 
       - name: Build
         run: |-
-          docker compose build dev
+          docker-compose build dev
 
       - name: Pull docker images
         run: |-
-          docker compose build dev
+          docker-compose build dev
 
       - name: Sync .env
         run: |-
-          docker compose run --rm dev yarn syncEnv
+          docker-compose run --rm dev yarn syncEnv
 
       - name: ESLint
         run: |-
-          docker compose run --rm dev yarn lint
+          docker-compose run --rm dev yarn lint
 
       - name: Tests
         run: |-
-          docker compose run --rm dev yarn test
+          docker-compose run --rm dev yarn test
