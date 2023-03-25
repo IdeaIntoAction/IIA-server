@@ -5,5 +5,5 @@ node_modules
 *.done
 .DS_Store
 .env
-prisma/json-schema.js
+# prisma/json-schema.js
 docker-compose.override.yml

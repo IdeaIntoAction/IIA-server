@@ -30,11 +30,6 @@ const sanitizeSchema = (raw) => {
 const pathToJsonSchema = path.join(process.cwd(), 'prisma', 'json-schema.json');
 const pathToJsSchema = path.join(process.cwd(), 'prisma', 'json-schema.js');
 
-// eslint-disable-next-line no-console
-console.log('pathToJsonSchema', pathToJsonSchema);
-// eslint-disable-next-line no-console
-console.log('pathToJsSchema', pathToJsSchema);
-
 const src = await fs.readFile(pathToJsonSchema, 'utf-8');
 const { definitions } = JSON.parse(src);
 
