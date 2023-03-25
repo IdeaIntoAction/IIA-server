@@ -1,0 +1,50 @@
+name: ESLint and Tests
+
+on:
+  pull_request:
+    branches:
+      - '**/*'
+
+jobs:
+  lint-test:
+    name: ESLint and Test
+    runs-on: ubuntu-latest
+    environment: tests
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%dT%H%M%S')"
+
+      - name: Create .env file from GitHub Secret
+        env:
+          ENV_FILE: ${{ secrets.ENV_FILE }}
+        run: |
+          echo -n "$ENV_FILE" > .env
+
+      - name: Build
+        run: |-
+          docker compose build dev
+
+      - name: Pull docker images
+        run: |-
+          docker compose build dev
+
+      - name: Sync .env
+        run: |-
+          docker compose run --rm dev yarn prestart
+
+      - name: ESLint
+        run: |-
+          docker compose run --rm dev yarn lint
+
+      - name: Tests
+        run: |-
+          docker compose run --rm dev yarn test
