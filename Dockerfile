@@ -13,7 +13,6 @@ COPY .env.schema /app/
 COPY ./.env /app/
 
 RUN yarn build
-RUN yarn checkEnv
 
 EXPOSE 8000
 

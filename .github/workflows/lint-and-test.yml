@@ -39,7 +39,7 @@ jobs:
 
       - name: Sync .env
         run: |-
-          docker compose run --rm dev yarn prestart
+          docker compose run --rm dev yarn syncEnv
 
       - name: ESLint
         run: |-
