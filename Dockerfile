@@ -5,7 +5,7 @@ WORKDIR /app
 ENV NODE_ENV=development
 
 COPY package.json yarn.lock tsconfig.json ./
-RUN yarn install --production --frozen-lockfile
+RUN yarn install --frozen-lockfile
 
 COPY ./prisma /app/prisma
 COPY src ./src
