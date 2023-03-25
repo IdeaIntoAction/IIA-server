@@ -9,10 +9,11 @@ RUN yarn install --frozen-lockfile
 
 COPY ./prisma /app/prisma
 COPY src ./src
+COPY .env.schema /app/
 COPY ./.env /app/
 
 RUN yarn build
-RUN node /app/prisma/sanitise.js
+RUN yarn checkEnv
 
 EXPOSE 8000
 
