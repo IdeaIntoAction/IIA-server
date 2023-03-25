@@ -7,6 +7,7 @@ RUN yarn install --frozen-lockfile
 COPY . .
 
 RUN yarn build
+RUN yarn sanitise
 
 EXPOSE 8000
 
