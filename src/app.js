@@ -1,4 +1,4 @@
-import config from './config/config.js';
+import config from './config.js';
 import * as api from './api/api.js';
 import { init as initInfra, teardown as teardownInfra } from './infra/infra.js';
 import { init as initServices } from './services/services.js';

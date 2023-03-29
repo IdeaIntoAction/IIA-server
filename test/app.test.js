@@ -1,7 +1,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { start } from '../src/app.js';
-import defaultConfig from '../src/config/config.js';
+import defaultConfig from '../src/config.js';
 
 describe('app', () => {
   it('starts with current config', async () => {

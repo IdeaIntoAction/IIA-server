@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { setTimeout } from 'node:timers/promises';
 import WebSocket from 'ws';
 import { start } from '../../src/app.js';
-import defaultConfig from '../../src/config/config.js';
+import defaultConfig from '../../src/config.js/index.js';
 import * as crypto from '../../src/lib/crypto.js';
 
 describe('account/transfer', () => {
