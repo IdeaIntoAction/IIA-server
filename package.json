@@ -7,9 +7,9 @@
   "scripts": {
     "lint": "eslint . && tsc --project .",
     "format": "prettier --list-different **/*.js --write .",
-    "start": "node -r dotenv/config src/main.js",
+    "start": "src/main.js",
     "build": "prisma generate && node ./prisma/sanitise.js",
-    "test": "NODE_ENV=test && node -r dotenv/config && yarn tap --no-coverage",
+    "test": "NODE_ENV=test tap --no-coverage",
     "syncEnv": "dotenv-checker --schema .env.schema --env .env",
     "prepare": "husky install"
   },
