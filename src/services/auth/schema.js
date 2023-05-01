@@ -15,12 +15,10 @@ const authResult = /** @type {const} */ ({
 
 export const signUpInput = /** @type {const} */ ({
   ...schema.strictObjectProperties,
-  required: ['email', 'password', 'firstName', 'lastName'],
+  required: ['email', 'password'],
   properties: {
     email: user.properties.email,
     password: { type: 'string' },
-    firstName: user.properties.firstName,
-    lastName: user.properties.lastName,
   },
 });
 export const signUpOutput = authResult;

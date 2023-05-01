@@ -1,15 +1,11 @@
 /** @typedef {import('./types').Service} Service */
 /** @typedef {import('./types')} ServiceFuncs */
 import { processServiceError } from './error.js';
-import * as notification from './notification/notification.js';
 import * as auth from './auth/auth.js';
-import * as account from './account/account.js';
 
 /** @type {Record<string, Service>} */
 const services = {
   auth,
-  notification,
-  account,
 };
 
 /** @type ServiceFuncs['init'] */

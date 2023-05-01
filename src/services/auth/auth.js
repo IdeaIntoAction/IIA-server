@@ -17,7 +17,7 @@ import {
 const signUp = {
   input: signUpInput,
   output: signUpOutput,
-  handler: async (infra, { data: { email, password, ...rest } }) => {
+  handler: async (infra, { data: { email, password } }) => {
     const { db, bus } = infra;
 
     const exists = await db.user.findUnique({ where: { email } });
@@ -26,7 +26,7 @@ const signUp = {
     const passwordHash = await crypto.hash(password);
 
     const { id: userId } = await db.user.create({
-      data: { email, passwordHash, ...rest },
+      data: { email, passwordHash },
     });
 
     const token = crypto.randomUUID();
