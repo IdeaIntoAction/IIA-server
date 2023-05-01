@@ -11,7 +11,8 @@
     "build": "prisma generate && node ./prisma/sanitise.js",
     "test": "NODE_ENV=test tap --no-coverage",
     "syncEnv": "dotenv-checker --schema .env.example --env .env",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "predev": "dotenv-checker --schema .env.schema --env .env.local"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,7 @@
   },
   "homepage": "https://github.com/georgolden/node-soa#readme",
   "engines": {
-    "node": "18"
+    "node": "18 || 20"
   },
   "dependencies": {
     "@fastify/auth": "^4.2.0",

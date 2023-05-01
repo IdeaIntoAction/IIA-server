@@ -10,5 +10,5 @@ export interface Config {
 }
 
 export interface Session {
-  userId: string;
+  userId: number;
 }

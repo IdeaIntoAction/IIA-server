@@ -2,10 +2,12 @@
 /** @typedef {import('./types')} ServiceFuncs */
 import { processServiceError } from './error.js';
 import * as auth from './auth/auth.js';
+import * as post from './post/post.js';
 
 /** @type {Record<string, Service>} */
 const services = {
   auth,
+  post,
 };
 
 /** @type ServiceFuncs['init'] */

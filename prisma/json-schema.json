@@ -7,9 +7,6 @@
         "id": {
           "type": "integer"
         },
-        "name": {
-          "type": "string"
-        },
         "email": {
           "type": "string"
         },
@@ -44,7 +41,6 @@
         }
       },
       "required": [
-        "name",
         "email",
         "passwordHash",
         "updatedAt"
@@ -60,9 +56,6 @@
           "type": "integer"
         },
         "title": {
-          "type": "string"
-        },
-        "slug": {
           "type": "string"
         },
         "content": {
@@ -106,7 +99,6 @@
       "required": [
         "authorId",
         "title",
-        "slug",
         "content",
         "updatedAt"
       ]
@@ -120,9 +112,6 @@
         "name": {
           "type": "string"
         },
-        "slug": {
-          "type": "string"
-        },
         "posts": {
           "type": "array",
           "items": {
@@ -131,8 +120,7 @@
         }
       },
       "required": [
-        "name",
-        "slug"
+        "name"
       ]
     },
     "Category": {
@@ -144,9 +132,6 @@
         "name": {
           "type": "string"
         },
-        "slug": {
-          "type": "string"
-        },
         "posts": {
           "type": "array",
           "items": {
@@ -155,8 +140,7 @@
         }
       },
       "required": [
-        "name",
-        "slug"
+        "name"
       ]
     },
     "Role": {

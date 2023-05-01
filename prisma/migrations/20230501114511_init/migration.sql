@@ -15,7 +15,6 @@ CREATE TABLE "Post" (
     "id" SERIAL NOT NULL,
     "authorId" INTEGER NOT NULL,
     "title" TEXT NOT NULL,
-    "slug" TEXT NOT NULL,
     "content" TEXT NOT NULL,
     "isPublished" BOOLEAN NOT NULL DEFAULT false,
     "publishedAt" TIMESTAMP(3),
@@ -29,7 +28,6 @@ CREATE TABLE "Post" (
 CREATE TABLE "Tag" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
-    "slug" TEXT NOT NULL,
 
     CONSTRAINT "Tag_pkey" PRIMARY KEY ("id")
 );
@@ -38,7 +36,6 @@ CREATE TABLE "Tag" (
 CREATE TABLE "Category" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
-    "slug" TEXT NOT NULL,
 
     CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
 );
@@ -91,19 +88,10 @@ CREATE TABLE "Session" (
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Post_slug_key" ON "Post"("slug");
-
--- CreateIndex
 CREATE UNIQUE INDEX "Tag_name_key" ON "Tag"("name");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Tag_slug_key" ON "Tag"("slug");
-
--- CreateIndex
 CREATE UNIQUE INDEX "Category_name_key" ON "Category"("name");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Category_slug_key" ON "Category"("slug");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Role_name_key" ON "Role"("name");

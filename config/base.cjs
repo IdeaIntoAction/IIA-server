@@ -35,7 +35,10 @@ module.exports = {
   },
   infra: {
     logger: { env: process.env.LOG_LEVEL },
-    db: { errorFormat: 'minimal' },
+    db: {
+      errorFormat: 'minimal',
+      datasources: { db: { url: process.env.DATABASE_URL } },
+    },
     redis: {
       url: process.env.REDIS_URL,
     },

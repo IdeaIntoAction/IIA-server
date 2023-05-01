@@ -20,7 +20,6 @@ datasource db {
 
 model User {
   id           Int        @id @default(autoincrement())
-  name         String
   email        String     @unique
   passwordHash String
   createdAt    DateTime   @default(now())
@@ -34,7 +33,6 @@ model Post {
   id          Int              @id @default(autoincrement())
   authorId    Int
   title       String
-  slug        String           @unique
   content     String
   isPublished Boolean          @default(false)
   publishedAt DateTime?
@@ -48,14 +46,12 @@ model Post {
 model Tag {
   id    Int         @id @default(autoincrement())
   name  String      @unique
-  slug  String      @unique
   posts TagOnPost[]
 }
 
 model Category {
   id    Int              @id @default(autoincrement())
   name  String           @unique
-  slug  String           @unique
   posts CategoryOnPost[]
 }
 
