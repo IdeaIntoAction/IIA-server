@@ -53,7 +53,7 @@ export const getPostOutputSchema = postOutputSchema;
 
 export const listPostsInputSchema = /** @type {const} */ ({
   ...schema.strictObjectProperties,
-  required: ['page', 'pageSize'],
+  required: ['limit', 'offset'],
   properties: {
     page: { type: 'number', minimum: 1 },
     pageSize: { type: 'number', minimum: 1 },

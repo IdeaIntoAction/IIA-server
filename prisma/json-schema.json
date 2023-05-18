@@ -40,11 +40,7 @@
           }
         }
       },
-      "required": [
-        "email",
-        "passwordHash",
-        "updatedAt"
-      ]
+      "required": ["email", "passwordHash", "updatedAt"]
     },
     "Post": {
       "type": "object",
@@ -66,10 +62,7 @@
           "default": false
         },
         "publishedAt": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": ["string", "null"],
           "format": "date-time"
         },
         "createdAt": {
@@ -96,12 +89,7 @@
           }
         }
       },
-      "required": [
-        "authorId",
-        "title",
-        "content",
-        "updatedAt"
-      ]
+      "required": ["authorId", "title", "content", "updatedAt"]
     },
     "Tag": {
       "type": "object",
@@ -119,9 +107,7 @@
           }
         }
       },
-      "required": [
-        "name"
-      ]
+      "required": ["name"]
     },
     "Category": {
       "type": "object",
@@ -139,9 +125,7 @@
           }
         }
       },
-      "required": [
-        "name"
-      ]
+      "required": ["name"]
     },
     "Role": {
       "type": "object",
@@ -153,10 +137,7 @@
           "type": "string"
         },
         "description": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "userRoles": {
           "type": "array",
@@ -165,9 +146,7 @@
           }
         }
       },
-      "required": [
-        "name"
-      ]
+      "required": ["name"]
     },
     "UserRole": {
       "type": "object",
@@ -185,10 +164,7 @@
           "$ref": "#/definitions/Role"
         }
       },
-      "required": [
-        "userId",
-        "roleId"
-      ]
+      "required": ["userId", "roleId"]
     },
     "TagOnPost": {
       "type": "object",
@@ -206,10 +182,7 @@
           "$ref": "#/definitions/Tag"
         }
       },
-      "required": [
-        "postId",
-        "tagId"
-      ]
+      "required": ["postId", "tagId"]
     },
     "CategoryOnPost": {
       "type": "object",
@@ -227,10 +200,7 @@
           "$ref": "#/definitions/Category"
         }
       },
-      "required": [
-        "postId",
-        "categoryId"
-      ]
+      "required": ["postId", "categoryId"]
     },
     "Session": {
       "type": "object",
@@ -256,11 +226,7 @@
           "type": "integer"
         }
       },
-      "required": [
-        "token",
-        "updatedAt",
-        "userId"
-      ]
+      "required": ["token", "updatedAt", "userId"]
     }
   },
   "type": "object",

@@ -79,13 +79,13 @@ const getPost = {
 const listPosts = {
   input: listPostsInputSchema,
   output: listPostsOutputSchema,
-  handler: async (infra, { data: { page, pageSize } }) => {
+  handler: async (infra, { data: { offset, limit } }) => {
     const { db } = infra;
 
     const [posts, total] = await Promise.all([
       db.post.findMany({
-        take: pageSize,
-        skip: (page - 1) * pageSize,
+        take: limit,
+        skip: (offset - 1) * limit,
         orderBy: { createdAt: 'desc' },
         include: { author: true },
       }),
