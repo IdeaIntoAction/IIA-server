@@ -79,13 +79,16 @@ const getPost = {
 const listPosts = {
   input: listPostsInputSchema,
   output: listPostsOutputSchema,
-  handler: async (infra, { data: { offset, limit } }) => {
+  handler: async (infra, { data: {} }) => {
     const { db } = infra;
 
+    // const take = +limit;
+    // const skip = (+offset - 1) * +limit;
+    // eslint-disable-next-line no-console
     const [posts, total] = await Promise.all([
       db.post.findMany({
-        take: limit,
-        skip: (offset - 1) * limit,
+        // take,
+        // skip,
         orderBy: { createdAt: 'desc' },
         include: { author: true },
       }),

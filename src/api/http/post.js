@@ -33,9 +33,9 @@ export const getPost = {
 };
 
 // /** @type HttpRoute */
-// export const listPosts = {
-//   method: 'GET',
-//   url: '/d',
-//   inputSource: 'query',
-//   command: { service: 'post', method: 'listPosts' },
-// };
+export const listPosts = {
+  method: 'GET',
+  url: '/all',
+  inputSource: 'query',
+  command: { service: 'post', method: 'listPosts' },
+};
