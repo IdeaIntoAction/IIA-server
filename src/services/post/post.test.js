@@ -2,6 +2,7 @@ import { before, beforeEach, after, afterEach, describe, it } from 'node:test';
 import assert from 'node:assert';
 import { init as initInfra, teardown as teardownInfra } from '../../infra/infra.js';
 import * as post from './post.js';
+import { ServiceError } from '../error.js';
 
 describe('posts', () => {
   let infra;
@@ -88,6 +89,51 @@ describe('posts', () => {
       assert.equal(updatedPost.id, testPost.id);
       assert.equal(updatedPost.title, updatedTitle);
       assert.equal(updatedPost.content, updatedContent);
+    });
+  });
+
+  describe('delete post', () => {
+    it('Should delete post if exists', async () => {
+      const testPost = await infra.db.post.create({
+        data: {
+          title: 'Test post',
+          content: 'Test post content',
+          author: {
+            connect: {
+              id: testUser.id,
+            },
+          },
+        },
+      });
+
+      const deletedPost = await post.commands.deletePost.handler(infra, {
+        data: { id: testPost.id },
+        meta: {},
+      });
+
+      assert.notEqual(deletedPost, false);
+    });
+
+    it('Should throw error if post does not exist', async () => {
+      await infra.db.post.create({
+        data: {
+          title: 'Test post',
+          content: 'Test post content',
+          author: {
+            connect: {
+              id: testUser.id,
+            },
+          },
+        },
+      });
+
+      await assert.rejects(
+        post.commands.deletePost.handler(infra, {
+          data: { id: 0 },
+          meta: {},
+        }),
+        ServiceError,
+      );
     });
   });
 });
