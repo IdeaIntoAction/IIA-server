@@ -1,4 +1,5 @@
 import type { Command } from '../types';
+import type { Session } from '../../types';
 import type { FromSchema } from 'json-schema-to-ts';
 import {
   signUpInput,
@@ -23,6 +24,7 @@ interface AuthCommands {
   }>;
   signOut: Command<{
     Data: FromSchema<typeof signOutInput>;
+    Meta: Session;
     Returns: void;
   }>;
   refresh: Command<{

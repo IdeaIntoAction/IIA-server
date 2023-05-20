@@ -61,11 +61,15 @@ const signIn = {
 
 /** @type Commands['signOut']  */
 const signOut = {
+  auth: {},
   input: signOutInput,
-  handler: async (infra, { data: { token } }) => {
+  handler: async (infra, { data: { token }, meta: { userId } }) => {
     const { db } = infra;
 
-    const exists = await db.session.delete({ where: { token } }).catch(() => false);
+    const exists = await db.session
+      .delete({ where: { token, user: { id: userId } } })
+      .catch(() => false);
+
     if (!exists) throw new ServiceError('Not found');
   },
 };

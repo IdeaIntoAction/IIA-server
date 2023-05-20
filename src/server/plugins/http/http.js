@@ -81,7 +81,7 @@ const getRouteOptions = (route, url, bus, server) => {
 
       if (err) throw new SystemError({ ...err, url });
 
-      const [code, response] = output ? [200, result] : [204, null];
+      const [code, response] = output ? [200, result] : [204];
       return res.code(code).send(response);
     },
   };

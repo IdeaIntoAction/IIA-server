@@ -32,7 +32,7 @@ export const getPost = {
   command: { service: 'post', method: 'getPost' },
 };
 
-// /** @type HttpRoute */
+/** @type HttpRoute */
 export const listPosts = {
   method: 'GET',
   url: '/all',

@@ -53,18 +53,18 @@ export const getPostOutputSchema = postOutputSchema;
 
 export const listPostsInputSchema = /** @type {const} */ ({
   ...schema.strictObjectProperties,
-  required: ['limit', 'offset'],
+  required: ['limit', 'cursor'],
   properties: {
-    page: { type: 'number', minimum: 1 },
-    pageSize: { type: 'number', minimum: 1 },
+    limit: { type: 'number', minimum: 1 },
+    cursor: { type: 'number', minimum: 0 },
   },
 });
 
 export const listPostsOutputSchema = /** @type {const} */ ({
   ...schema.strictObjectProperties,
-  required: ['posts', 'total'],
+  required: ['posts'],
   properties: {
     posts: { type: 'array', items: postOutputSchema },
-    total: { type: 'number', minimum: 0 },
+    nextCursor: { type: ['number', 'null'] },
   },
 });

@@ -79,23 +79,19 @@ const getPost = {
 const listPosts = {
   input: listPostsInputSchema,
   output: listPostsOutputSchema,
-  handler: async (infra, { data: {} }) => {
-    const { db } = infra;
+  handler: async (infra, { data: { cursor, limit } }) => {
+    const posts = await infra.db.post.findMany({
+      take: +limit,
+      skip: cursor ? 1 : undefined,
+      cursor: cursor ? { id: cursor } : undefined,
+      orderBy: { createdAt: 'desc' },
+      include: { author: true },
+    });
 
-    // const take = +limit;
-    // const skip = (+offset - 1) * +limit;
-    // eslint-disable-next-line no-console
-    const [posts, total] = await Promise.all([
-      db.post.findMany({
-        // take,
-        // skip,
-        orderBy: { createdAt: 'desc' },
-        include: { author: true },
-      }),
-      db.post.count(),
-    ]);
-
-    return { posts, total };
+    return {
+      posts,
+      nextCursor: posts[posts.length - 1]?.id || null,
+    };
   },
 };
 
