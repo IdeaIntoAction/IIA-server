@@ -1,5 +1,5 @@
 import { before, beforeEach, after, afterEach, describe, it } from 'node:test';
-import assert from 'node:assert';
+import assert from 'node:assert/strict';
 import { init as initInfra, teardown as teardownInfra } from '../../infra/infra.js';
 import * as post from './post.js';
 import { ServiceError } from '../error.js';
@@ -54,7 +54,7 @@ describe('posts', () => {
         data: { title, content },
       });
 
-      assert(createdPost.id);
+      assert.ok(createdPost.id);
       assert.equal(createdPost.title, title);
       assert.equal(createdPost.content, content);
     });
@@ -181,6 +181,72 @@ describe('posts', () => {
         }),
         ServiceError,
       );
+    });
+  });
+
+  describe('list posts', () => {
+    beforeEach(async () => {
+      await infra.db.post.deleteMany({});
+    });
+
+    it('should return posts', async () => {
+      const testPost1 = await infra.db.post.create({
+        data: {
+          title: 'Test post 1',
+          content: 'Test post content 1',
+          author: { connect: { id: testUser.id } },
+        },
+      });
+      await infra.db.post.create({
+        data: {
+          title: 'Test post 2',
+          content: 'Test post content 2',
+          author: { connect: { id: testUser.id } },
+        },
+      });
+
+      const result = await post.commands.listPosts.handler(infra, {
+        data: { cursor: 0, limit: 2 },
+        meta: {},
+      });
+
+      assert.strictEqual(result.posts.length, 2);
+      assert.strictEqual(result.nextCursor, testPost1.id); // As the posts are ordered by 'desc' order.
+    });
+
+    it('should return nextCursor correctly', async () => {
+      const testPost1 = await infra.db.post.create({
+        data: {
+          title: 'Test post 1',
+          content: 'Test post content 1',
+          author: { connect: { id: testUser.id } },
+        },
+      });
+      const testPost2 = await infra.db.post.create({
+        data: {
+          title: 'Test post 2',
+          content: 'Test post content 2',
+          author: { connect: { id: testUser.id } },
+        },
+      });
+
+      const result = await post.commands.listPosts.handler(infra, {
+        data: { cursor: testPost2.id, limit: 1 },
+        meta: {},
+      });
+
+      assert.strictEqual(result.posts.length, 1);
+      assert.strictEqual(result.nextCursor, testPost1.id);
+    });
+
+    it('should return an empty list if no posts', async () => {
+      const result = await post.commands.listPosts.handler(infra, {
+        data: { cursor: 0, limit: 2 },
+        meta: {},
+      });
+
+      assert.strictEqual(result.posts.length, 0);
+      assert.strictEqual(result.nextCursor, null);
     });
   });
 });
