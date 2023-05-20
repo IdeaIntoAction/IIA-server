@@ -136,4 +136,51 @@ describe('posts', () => {
       );
     });
   });
+
+  describe('get post by id', () => {
+    it('Should return post if exists', async () => {
+      const testPost = await infra.db.post.create({
+        data: {
+          title: 'Test post',
+          content: 'Test post content',
+          author: {
+            connect: {
+              id: testUser.id,
+            },
+          },
+        },
+      });
+
+      const result = await post.commands.getPost.handler(infra, {
+        data: { id: testPost.id },
+        meta: {},
+      });
+
+      assert.equal(result.id, testPost.id);
+      assert.equal(result.title, testPost.title);
+      assert.equal(result.content, testPost.content);
+    });
+
+    it('Should throw error if post does not exist', async () => {
+      await infra.db.post.create({
+        data: {
+          title: 'Test post',
+          content: 'Test post content',
+          author: {
+            connect: {
+              id: testUser.id,
+            },
+          },
+        },
+      });
+
+      await assert.rejects(
+        post.commands.getPost.handler(infra, {
+          data: { id: 0 },
+          meta: {},
+        }),
+        ServiceError,
+      );
+    });
+  });
 });
