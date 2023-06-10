@@ -7,4 +7,5 @@ export default {
   infra: nodeConfig.get('infra'),
   services: nodeConfig.get('services'),
   server: nodeConfig.get('server'),
+  googleCloud: nodeConfig.get('googleCloud'),
 };

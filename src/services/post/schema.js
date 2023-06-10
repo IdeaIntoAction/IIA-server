@@ -6,19 +6,21 @@ const { post } = entities;
 
 export const postInputSchema = /** @type {const} */ ({
   ...schema.strictObjectProperties,
-  required: ['title', 'content'],
+  required: ['title', 'content', 'coverImage'],
   properties: {
     title: post.properties.title,
+    coverImage: post.properties.coverImage,
     content: post.properties.content,
   },
 });
 
 export const postOutputSchema = /** @type {const} */ ({
   ...schema.strictObjectProperties,
-  required: ['id', 'title', 'content'],
+  required: ['id', 'title', 'coverImage', 'content'],
   properties: {
     id: post.properties.id,
     title: post.properties.title,
+    coverImage: post.properties.coverImage,
     content: post.properties.content,
   },
 });
@@ -29,6 +31,7 @@ export const updatePostInputSchema = /** @type {const} */ ({
   properties: {
     id: post.properties.id,
     title: post.properties.title,
+    coverImage: post.properties.coverImage,
     content: post.properties.content,
   },
 });

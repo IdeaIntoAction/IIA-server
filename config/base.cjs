@@ -33,6 +33,11 @@ module.exports = {
       routePrefix: '/docs',
     },
   },
+  googleCloud: {
+    bucketName: process.env.GOOGLE_CLOUD_BUCKET_NAME,
+    projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
+    keyFilename: process.env.GOOGLE_CLOUD_KEY_FILENAME,
+  },
   infra: {
     logger: { env: process.env.LOG_LEVEL },
     db: {

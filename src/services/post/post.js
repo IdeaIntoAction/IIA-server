@@ -16,12 +16,12 @@ const createPost = {
   auth: {},
   input: postInputSchema,
   output: postOutputSchema,
-  handler: async (infra, { data: { title, content }, meta: { userId } }) => {
+  handler: async (infra, { data: { title, coverImage, content }, meta: { userId } }) => {
     const { db } = infra;
 
     const author = await db.user.findUnique({ where: { id: userId } });
     const post = await db.post.create({
-      data: { title, content, author: { connect: { id: author?.id } } },
+      data: { title, coverImage, content, author: { connect: { id: author?.id } } },
     });
 
     return post;

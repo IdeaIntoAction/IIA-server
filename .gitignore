@@ -7,3 +7,4 @@ node_modules
 .env
 # prisma/json-schema.js
 docker-compose.override.yml
+google-cloud-storage.json
