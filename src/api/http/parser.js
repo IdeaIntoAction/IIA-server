@@ -1,41 +1,41 @@
 /** @typedef {import('../types').HTTPRoute} HttpRoute */
 
 /** @type HttpRoute */
-export const createPost = {
+export const createParser = {
   method: 'POST',
   url: '/create',
   inputSource: 'body',
-  command: { service: 'post', method: 'createPost' },
+  command: { service: 'parser', method: 'createParser' },
 };
 
 /** @type HttpRoute */
-export const updatePost = {
+export const updateParser = {
   method: 'PUT',
   url: '/update',
   inputSource: 'body',
-  command: { service: 'post', method: 'updatePost' },
+  command: { service: 'parser', method: 'updateParser' },
 };
 
 /** @type HttpRoute */
-export const deletePost = {
+export const deleteParser = {
   method: 'DELETE',
   url: '/delete',
   inputSource: 'body',
-  command: { service: 'post', method: 'deletePost' },
+  command: { service: 'parser', method: 'deleteParser' },
 };
 
 /** @type HttpRoute */
-export const getPost = {
+export const getParser = {
   method: 'GET',
   url: '/',
   inputSource: 'query',
-  command: { service: 'post', method: 'getPost' },
+  command: { service: 'parser', method: 'getParser' },
 };
 
 /** @type HttpRoute */
-export const listPosts = {
+export const listParsers = {
   method: 'GET',
   url: '/all',
   inputSource: 'query',
-  command: { service: 'post', method: 'listPosts' },
+  command: { service: 'parser', method: 'listParsers' },
 };

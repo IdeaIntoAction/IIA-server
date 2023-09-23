@@ -24,36 +24,20 @@ model User {
   passwordHash String
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
-  posts        Post[]
+  parsers      Parser[]
   sessions     Session[]
   userRoles    UserRole[]
 }
 
-model Post {
-  id          Int              @id @default(autoincrement())
+model Parser {
+  id          Int       @id @default(autoincrement())
   authorId    Int
-  title       String
-  coverImage  String
-  content     String
-  isPublished Boolean          @default(false)
+  site        String
+  code        String
   publishedAt DateTime?
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt
-  author      User             @relation(fields: [authorId], references: [id])
-  tags        TagOnPost[]
-  categories  CategoryOnPost[]
-}
-
-model Tag {
-  id    Int         @id @default(autoincrement())
-  name  String      @unique
-  posts TagOnPost[]
-}
-
-model Category {
-  id    Int              @id @default(autoincrement())
-  name  String           @unique
-  posts CategoryOnPost[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  author      User      @relation(fields: [authorId], references: [id])
 }
 
 model Role {
@@ -70,24 +54,6 @@ model UserRole {
   role   Role @relation(fields: [roleId], references: [id])
 
   @@id([userId, roleId])
-}
-
-model TagOnPost {
-  postId Int
-  tagId  Int
-  post   Post @relation(fields: [postId], references: [id])
-  tag    Tag  @relation(fields: [tagId], references: [id])
-
-  @@id([postId, tagId])
-}
-
-model CategoryOnPost {
-  postId     Int
-  categoryId Int
-  post       Post     @relation(fields: [postId], references: [id])
-  category   Category @relation(fields: [categoryId], references: [id])
-
-  @@id([postId, categoryId])
 }
 
 model Session {

@@ -21,10 +21,10 @@
           "type": "string",
           "format": "date-time"
         },
-        "posts": {
+        "parsers": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Post"
+            "$ref": "#/definitions/Parser"
           }
         },
         "sessions": {
@@ -42,7 +42,7 @@
       },
       "required": ["email", "passwordHash", "updatedAt"]
     },
-    "Post": {
+    "Parser": {
       "type": "object",
       "properties": {
         "id": {
@@ -51,18 +51,11 @@
         "authorId": {
           "type": "integer"
         },
-        "title": {
+        "site": {
           "type": "string"
         },
-        "coverImage": {
+        "code": {
           "type": "string"
-        },
-        "content": {
-          "type": "string"
-        },
-        "isPublished": {
-          "type": "boolean",
-          "default": false
         },
         "publishedAt": {
           "type": ["string", "null"],
@@ -78,57 +71,9 @@
         },
         "author": {
           "$ref": "#/definitions/User"
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TagOnPost"
-          }
-        },
-        "categories": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/CategoryOnPost"
-          }
         }
       },
-      "required": ["authorId", "title", "coverImage", "content", "updatedAt"]
-    },
-    "Tag": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        },
-        "posts": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TagOnPost"
-          }
-        }
-      },
-      "required": ["name"]
-    },
-    "Category": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        },
-        "posts": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/CategoryOnPost"
-          }
-        }
-      },
-      "required": ["name"]
+      "required": ["authorId", "site", "code", "updatedAt"]
     },
     "Role": {
       "type": "object",
@@ -169,42 +114,6 @@
       },
       "required": ["userId", "roleId"]
     },
-    "TagOnPost": {
-      "type": "object",
-      "properties": {
-        "postId": {
-          "type": "integer"
-        },
-        "tagId": {
-          "type": "integer"
-        },
-        "post": {
-          "$ref": "#/definitions/Post"
-        },
-        "tag": {
-          "$ref": "#/definitions/Tag"
-        }
-      },
-      "required": ["postId", "tagId"]
-    },
-    "CategoryOnPost": {
-      "type": "object",
-      "properties": {
-        "postId": {
-          "type": "integer"
-        },
-        "categoryId": {
-          "type": "integer"
-        },
-        "post": {
-          "$ref": "#/definitions/Post"
-        },
-        "category": {
-          "$ref": "#/definitions/Category"
-        }
-      },
-      "required": ["postId", "categoryId"]
-    },
     "Session": {
       "type": "object",
       "properties": {
@@ -237,26 +146,14 @@
     "user": {
       "$ref": "#/definitions/User"
     },
-    "post": {
-      "$ref": "#/definitions/Post"
-    },
-    "tag": {
-      "$ref": "#/definitions/Tag"
-    },
-    "category": {
-      "$ref": "#/definitions/Category"
+    "parser": {
+      "$ref": "#/definitions/Parser"
     },
     "role": {
       "$ref": "#/definitions/Role"
     },
     "userRole": {
       "$ref": "#/definitions/UserRole"
-    },
-    "tagOnPost": {
-      "$ref": "#/definitions/TagOnPost"
-    },
-    "categoryOnPost": {
-      "$ref": "#/definitions/CategoryOnPost"
     },
     "session": {
       "$ref": "#/definitions/Session"
